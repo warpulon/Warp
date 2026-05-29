@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fun Facts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .fact-box {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fact-text {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .fact-counter {
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Fun Facts</h1>
+        <div class="fact-box">
+            <p class="fact-text" id="fact">Click the button to discover a fun fact!</p>
+        </div>
+        <button onclick="showRandomFact()">Get a Fun Fact</button>
+        <div class="fact-counter">
+            <span id="counter">0</span> facts viewed
+        </div>
+    </div>
+
+    <script>
+        const facts = [
+            "Honey never spoils. Archaeologists have found 3000-year-old honey in Egyptian tombs that was still edible!",
+            "A group of flamingos is called a 'flamboyance'.",
+            "Octopuses have three hearts: two pump blood to the gills, and the third pumps it to the rest of the body.",
+            "Bananas are berries, but strawberries are not.",
+            "The shortest war in history lasted only 38 to 45 minutes between Britain and Zanzibar in 1896.",
+            "A day on Venus is longer than a year on Venus.",
+            "Cleopatra lived closer to the moon landing than to the construction of the Great Pyramid.",
+            "Cats have a special collarbone that allows them to squeeze through tight spaces.",
+            "The smell of petrichor (rain on dry earth) comes from oil released by plants and a compound called geosmin.",
+            "A group of crows is called a 'murder'.",
+            "Wombats have cube-shaped poop.",
+            "The fingerprints of koalas are so similar to humans that they could confuse crime scene investigators.",
+            "Tardigrades (water bears) can survive in the vacuum of space.",
+            "A blue whale's heart is the size of a car and weighs as much as an elephant.",
+            "Sloths only defecate once a week.",
+            "Honey is the only food that doesn't spoil and can last indefinitely.",
+            "The Great Wall of China is not visible from space with the naked eye.",
+            "Penguins have knees.",
+            "Butterflies taste with their feet.",
+            "Sea otters hold hands while sleeping to avoid drifting apart.",
+            "The mitochondria is the powerhouse of the cell.",
+            "A group of pugs is called a 'grumble'.",
+            "Polar bears are not actually white; their fur is transparent.",
+            "The moon is moving away from Earth at about 3.8 cm per year.",
+            "Ferrets sleep for about 18 hours a day."
+        ];
+
+        let factsViewed = 0;
+
+        function showRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const fact = facts[randomIndex];
+            
+            const factElement = document.getElementById('fact');
+            factElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                factElement.textContent = fact;
+                factElement.style.opacity = '1';
+            }, 300);
+            
+            factsViewed++;
+            document.getElementById('counter').textContent = factsViewed;
+        }
+
+        // Show a fact when page loads
+        window.addEventListener('load', showRandomFact);
+
+        // Optional: Smooth fade transition
+        const style = document.createElement('style');
+        style.textContent = `
+            #fact {
+                transition: opacity 0.3s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
